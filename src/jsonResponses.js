@@ -1,4 +1,5 @@
-const users = {};
+const charms = {};
+let numCharms = 0;
 
 // JSON Responses for Body requests
 const respondJSON = (request, response, status, object) => {
@@ -13,57 +14,61 @@ const respondJSONMeta = (request, response, status) => {
   response.end();
 };
 
-// Get users Body
-const getUsers = (request, response) => {
+// Get charms Body
+const getCharms = (request, response) => {
   const responseJSON = {
-    users,
+    charms,
   };
 
   respondJSON(request, response, 200, responseJSON);
 };
 
-// Get users Head
-const getUsersMeta = (request, response) => {
+// Get charms Head
+const getCharmsMeta = (request, response) => {
   respondJSONMeta(request, response, 200);
 };
 
-// Add user to data
-const addUser = (request, response, body) => {
+// Add charm to data
+const addCharm = (request, response, body) => {
   const responseJSON = {
-    message: 'Name and age are both required.',
+    message: 'All parameters are required.',
   };
 
-  if (!body.name || !body.age) {
+  if (!body.skillOne || !body.sOnePoints || !body.skillTwo || !body.sTwoPoints || !body.slot) {
     responseJSON.id = 'missingParams';
     return respondJSON(request, response, 400, responseJSON);
   }
 
   let responseCode = 204;
 
-  if (!users[body.name]) {
+  if (!charms[numCharms]) {
     responseCode = 201;
-    users[body.name] = {};
+    charms[numCharms] = {};
   }
 
-  users[body.name].name = body.name;
-  users[body.name].age = body.age;
+  charms[numCharms].skillOne = body.skillOne;
+  charms[numCharms].sOnePoints = body.sOnePoints;
+  charms[numCharms].skillTwo = body.skillTwo;
+  charms[numCharms].sTwoPoints = body.sTwoPoints;
+  charms[numCharms].slot = body.slot;
 
   if (responseCode === 201) {
+    numCharms++;
     responseJSON.message = 'Created Successfully';
     return respondJSON(request, response, responseCode, responseJSON);
   }
   return respondJSONMeta(request, response, responseCode);
 };
 
-// Update existing user
-const updateUser = (request, response) => {
-  const newUser = {
+// Update existing charm
+const updateCharm = (request, response) => {
+  const newCharm = {
     createdAt: Date.now(),
   };
 
-  users[newUser.createdAt] = newUser;
+  charms[newCharm.createdAt] = newCharm;
 
-  return respondJSON(request, response, 201, newUser);
+  return respondJSON(request, response, 201, newCharm);
 };
 
 // Not real Body
@@ -83,10 +88,10 @@ const notRealMeta = (request, response) => {
 
 // Exports
 module.exports = {
-  getUsers,
-  getUsersMeta,
-  addUser,
-  updateUser,
+  getCharms,
+  getCharmsMeta,
+  addCharm,
+  updateCharm,
   notReal,
   notRealMeta,
 };

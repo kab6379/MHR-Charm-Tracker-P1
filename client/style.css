@@ -14,8 +14,21 @@ html, body {
   font-size: 2em;
 }
 
-#content {
-  margin-top: 100px;
+#contentHead {
   font-size: 2em;
   text-align: center;
+}
+
+#content {
+  font-size: 1em;
+  text-align: left;
+  margin: 100px auto;
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  gap: 15px;
+}
+
+div {
+  border: 0.25em solid black;
 }

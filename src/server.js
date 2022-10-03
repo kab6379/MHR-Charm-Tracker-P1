@@ -29,8 +29,8 @@ const parseBody = (request, response, handler) => {
 
 // Handle POST requests
 const handlePost = (request, response, parsedUrl) => {
-  if (parsedUrl.pathname === '/addUser') {
-    parseBody(request, response, jsonHandler.addUser);
+  if (parsedUrl.pathname === '/addCharm') {
+    parseBody(request, response, jsonHandler.addCharm);
   }
 };
 
@@ -39,8 +39,8 @@ const handleGet = (request, response, parsedUrl) => {
   // Route based on URL
   if (parsedUrl.pathname === '/style.css') {
     htmlHandler.getCSS(request, response);
-  } else if (parsedUrl.pathname === '/getUsers') {
-    jsonHandler.getUsers(request, response);
+  } else if (parsedUrl.pathname === '/getCharms') {
+    jsonHandler.getCharms(request, response);
   } else if (parsedUrl.pathname === '/notReal') {
     jsonHandler.notReal(request, response);
   } else if (parsedUrl.pathname === '/') {
@@ -52,8 +52,8 @@ const handleGet = (request, response, parsedUrl) => {
 
 // Handle HEAD requests
 const handleHead = (request, response, parsedUrl) => {
-  if (parsedUrl.pathname === '/getUsers') {
-    jsonHandler.getUsersMeta(request, response);
+  if (parsedUrl.pathname === '/getCharms') {
+    jsonHandler.getCharmsMeta(request, response);
   } else if (parsedUrl.pathname === '/notReal') {
     jsonHandler.notRealMeta(request, response);
   }
