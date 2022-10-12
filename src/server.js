@@ -59,6 +59,13 @@ const handleHead = (request, response, parsedUrl) => {
   }
 };
 
+// Handle DELETE requests
+const handleDelete = (request, response, parsedUrl) => {
+  if (parsedUrl.pathname === '/deleteCharm') {
+    parseBody(request, response, jsonHandler.deleteCharm);
+  }
+};
+
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
 
@@ -66,6 +73,8 @@ const onRequest = (request, response) => {
     handlePost(request, response, parsedUrl);
   } else if (request.method === 'GET') {
     handleGet(request, response, parsedUrl);
+  } else if (request.method === 'DELETE') {
+    handleDelete(request, response, parsedUrl);
   } else {
     handleHead(request, response, parsedUrl);
   }

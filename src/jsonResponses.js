@@ -30,6 +30,7 @@ const getCharmsMeta = (request, response) => {
 
 // Add charm to data
 const addCharm = (request, response, body) => {
+  //Checks to make sure all charm parameters were sent
   const responseJSON = {
     message: 'All parameters are required.',
   };
@@ -39,7 +40,8 @@ const addCharm = (request, response, body) => {
     return respondJSON(request, response, 400, responseJSON);
   }
 
-  let responseCode = 204;
+  //Creates charm
+  let responseCode;
 
   if (!charms[numCharms]) {
     responseCode = 201;
@@ -60,15 +62,20 @@ const addCharm = (request, response, body) => {
   return respondJSONMeta(request, response, responseCode);
 };
 
-// Update existing charm
-const updateCharm = (request, response) => {
-  const newCharm = {
-    createdAt: Date.now(),
+// Delete existing charm
+const deleteCharm = (request, response, body) => {
+  const responseJSON = {
+    message: 'All parameters are required.',
   };
 
-  charms[newCharm.createdAt] = newCharm;
+  if (!body.charmIndex) {
+    responseJSON.id = 'missingParams';
+    return respondJSON(request, response, 400, responseJSON);
+  }
 
-  return respondJSON(request, response, 201, newCharm);
+  charms[body.charmIndex] = '';
+  responseJSON.message = 'Deleted Successfully';
+  return respondJSON(request, response, 204, responseJSON);
 };
 
 // Not real Body
@@ -91,7 +98,7 @@ module.exports = {
   getCharms,
   getCharmsMeta,
   addCharm,
-  updateCharm,
+  deleteCharm,
   notReal,
   notRealMeta,
 };

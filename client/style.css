@@ -3,18 +3,67 @@ html, body {
   width: 100%;
   margin: 0;
   padding: 0;
+  background-color: #77BB77;
+}
+
+body {
+  height: auto;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 0.5em;
 }
 
 #top {
-  text-align: center;
+  text-align: left;
   margin: 0 auto;
+  background-color: #EBEBEB;
+  font-size: 1.2em;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-around;
+  height: 8em;
+  position: sticky;
+  top: 0;
 }
 
-#top h1 {
-  font-size: 2em;
+#top form {
+  display: flex;
+  margin: 0 auto;
+  max-width: 30%;
+}
+
+input {
+  height: 50%;
+  margin: auto;
+  border: 0.15rem solid black;
+  font-size: large;
+  color: black;
+  background-color: #FFCB77;
+}
+
+input:hover{
+  color: #EBEBEB;
+}
+
+input:active{
+  background-color: #77BB77;
+  color: #EBEBEB
+}
+
+.selectContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.selector{
+  margin: 0 2rem 0 0;
 }
 
 #contentHead {
+  margin-top: 1em;
   font-size: 2em;
   text-align: center;
 }
@@ -22,13 +71,43 @@ html, body {
 #content {
   font-size: 1em;
   text-align: left;
-  margin: 100px auto;
+  margin: 2em auto;
   width: 90%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(17%, 1fr));
   gap: 15px;
 }
 
-div {
-  border: 0.25em solid black;
+#content div {
+  border: 0.1em solid black;
+  background-color: #63768D;
+  color: #FFCB77;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 20em;
+}
+
+div p {
+  font-weight: bold;
+  margin-left: 2em;
+}
+
+div button {
+  border-top: 0.10rem solid black;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-bottom-width: 0;
+  font-size: medium;
+  color: black;
+  background-color: #EBEBEB;
+}
+
+div button:hover{
+  color: #77BB77;
+}
+
+div button:active{
+  background-color: #63768D;
+  color: #77BB77
 }
